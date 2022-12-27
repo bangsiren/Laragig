@@ -16,19 +16,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-
-        Listing::create([
-          'title' => 'Laravel Senior Developer',
-          'tags' => 'Laravel Javascript',
-          'company' => 'SAM GG',
-          'location' => 'Boston, AM',
-          'email' => 'email1@email.com',
-          'website' => 'https://www.acme.com',
-          'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Quidem, dolore quia nulla placeat similique odit odio quis? Dolor facilis sed maxime, 
-                            assumenda est qui sint enim adipisci, excepturi iste consectetur.'
-        ]);
+        \App\Models\User::factory(5)->create();
+        Listing::factory(6)->create();
+        
+        // Listing::create([
+        //   'title' => 'Laravel Senior Developer',
+        //   'tags' => 'Laravel Javascript',
+        //   'company' => 'SAM GG',
+        //   'location' => 'Boston, AM',
+        //   'email' => 'email1@email.com',
+        //   'website' => 'https://www.acme.com',
+        //   'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        //                     Quidem, dolore quia nulla placeat similique odit odio quis? Dolor facilis sed maxime, 
+        //                     assumenda est qui sint enim adipisci, excepturi iste consectetur.'
+        // ]);
+        
+        // Listing::create([
+        //     'title' => 'Laravel Jenior Developer',
+        //     'tags' => 'Note',
+        //     'company' => 'ACME PP',
+        //     'location' => 'Tonson, SEF',
+        //     'email' => 'email2@email.com',
+        //     'website' => 'https://www.acme.com/',
+        //     'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        //                       Quidem, dolore quia nulla placeat similique odit odio quis? Dolor facilis sed maxime, 
+        //                       assumenda est qui sint enim adipisci, excepturi iste consectetur.'
+        //   ]);
 
     }
 }
