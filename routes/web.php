@@ -20,12 +20,17 @@ use App\Models\Listings;
 //AlL Listings 
 Route::get('/', [ListingController::class, 'index']);
 
+// Show Create Form 
+Route::get('/listings/create', [ListingController::class, 'create']);
 
+// Store Listings Data
+
+Route::post('/listings', [ListingController::class, 'store']);
+   
 //Single Listings
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
-// Show Create Form 
-Route::get('/listings/create', [ListingController::class, 'create']);
+
 // Route::get('/hello', function () {
 //     return response('<h1>Hello World</h1>', 200)
 //          ->header('Content-Type', 'text/plains')
