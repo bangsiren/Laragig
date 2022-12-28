@@ -11,10 +11,11 @@ class ListingController extends Controller
 
     public function index()
     {
+
         // dd($request->tag);
         return view('listings.index', [
             'header' => 'Latest Listings',
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(4)
         ]);
     }
 
@@ -45,6 +46,9 @@ class ListingController extends Controller
            'tags' => 'required',
            'description' => 'required',
        ]);
+       if($request->file('logo')) {
+        $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+       }
         $formFields = new Listing();
         $formFields->title = $request->title;
         $formFields->company = $request->company;
