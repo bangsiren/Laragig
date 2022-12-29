@@ -1,4 +1,5 @@
-@props(['tagsCsv'])
+@props(['tagsCsv']);
+
 @php
 $tags = explode(',', $tagsCsv);
 @endphp

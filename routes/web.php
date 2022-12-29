@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ListingController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 use App\Models\Listings;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,15 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
 //Update  Listings
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
- 
+
+//Delete  Listings
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
 //Single Listings
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
-
+// Show Register/Create Form 
+Route::get('/register', [UserController::class, 'create']);
 // Route::get('/hello', function () {
 //     return response('<h1>Hello World</h1>', 200)
 //          ->header('Content-Type', 'text/plains')

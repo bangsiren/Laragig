@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use phpDocumentor\Reflection\PseudoTypes\List_;
 
 class ListingController extends Controller
 {
@@ -107,9 +108,19 @@ class ListingController extends Controller
         } else {
             return back()->with('failed', 'Something Went Wrong');
         }
-        //    return ->with('message', 'Listinf Created Successfully!');
+
+        // return ->with('message', 'Listinf Created Successfully!');
     }
+
+    // Show Edit Listing
     public function edit (Listing $listing) {
         return view('listings.edit', ['listing' => $listing]);
     }
+
+    // Delete Listing
+
+     public function destroy(Listing $listing) {
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing Deleted Successfully');
+     }
 }
