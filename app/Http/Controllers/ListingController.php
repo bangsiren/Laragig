@@ -43,7 +43,6 @@ class ListingController extends Controller
             'company' => ['required', Rule::unique('listings', 'company')],
             'location' => 'required',
             'website' => 'required',
-            'logo' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required',
@@ -52,7 +51,6 @@ class ListingController extends Controller
     
         $formFields = new Listing();
         $formFields->title = $request->title;
-        $formFields->logo = $request->logo;
         $formFields->company = $request->company;
         $formFields->location = $request->location;
         $formFields->website = $request->website;
@@ -79,6 +77,7 @@ class ListingController extends Controller
       
         $request->validate([
             'title' => 'required',
+            'logo' => 'required',
             'company' => ['required'],
             'location' => 'required',
             'website' => 'required',
@@ -90,6 +89,7 @@ class ListingController extends Controller
     
         $formFields = new Listing();
         $formFields->title = $request->title;
+        $formFields->logo = $request->logo;
         $formFields->company = $request->company;
         $formFields->location = $request->location;
         $formFields->website = $request->website;
@@ -103,7 +103,7 @@ class ListingController extends Controller
 
         $res = $formFields->save();
         if ($res) {
-            return back()->with('message', 'Listing Updated Successfully!');
+            return redirect('./')->with('message', 'Listing Updated Successfully!');
         } else {
             return back()->with('failed', 'Something Went Wrong');
         }
