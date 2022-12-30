@@ -53,6 +53,7 @@ class ListingController extends Controller
         $formFields = new Listing();
         $formFields->title = $request->title;
         $formFields->company = $request->company;
+        $formFields->user_id = $request->user_id;
         $formFields->location = $request->location;
         $formFields->website = $request->website;
         $formFields->email = $request->email;
@@ -62,6 +63,8 @@ class ListingController extends Controller
         if ($request->hasFile('logo')) {
             $formFields->logo = $request->file('logo')->store('logos', 'public');
         }
+
+        $formFields['user_id'] = auth()->id();
 
         $res = $formFields->save();
         if ($res) {
@@ -75,6 +78,11 @@ class ListingController extends Controller
     // Store Listing Data
     public function update(Request $request, Listing $listing)
     {
+
+        // Make Sure logged in user is onwer
+        if($listing->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
       
         $request->validate([
             'title' => 'required',
@@ -90,6 +98,7 @@ class ListingController extends Controller
     
         $formFields = new Listing();
         $formFields->title = $request->title;
+        $formFields->user_id = $request->user_id;
         $formFields->logo = $request->logo;
         $formFields->company = $request->company;
         $formFields->location = $request->location;
@@ -120,7 +129,19 @@ class ListingController extends Controller
     // Delete Listing
 
      public function destroy(Listing $listing) {
+
+          // Make Sure logged in user is onwer
+          if($listing->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
         $listing->delete();
         return redirect('/')->with('message', 'Listing Deleted Successfully');
      }
+
+    //  Manage Listings 
+     public function manage()
+    {
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+    }
 }
