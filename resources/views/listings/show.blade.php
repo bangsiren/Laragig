@@ -15,6 +15,7 @@
                 <div class="text-lg my-4">
                     <i class="fa-solid fa-location-dot"></i>{{$listing->location}}
                 </div>
+                
                 <div class="border border-gray-200 w-full mb-6"></div>
                 <div>
                     <h3 class="text-3xl font-bold mb-4">
